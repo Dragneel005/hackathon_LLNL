@@ -159,7 +159,17 @@ app.post('/api/devices/:id/checkin', (req, res) => {
             }
 
             // Find the latest open history record for this device and update it
-            const updateHistorySql = `UPDATE history SET checkInDate = ? WHERE deviceId = ? AND checkInDate IS NULL ORDER BY checkOutDate DESC LIMIT 1`;
+            const updateHistorySql = `
+    UPDATE history
+    SET checkInDate = ?
+    WHERE id = (
+        SELECT id
+        FROM history
+        WHERE deviceId = ? AND checkInDate IS NULL
+        ORDER BY checkOutDate DESC
+        LIMIT 1
+    )
+`;
             db.run(updateHistorySql, [checkInTimestamp, deviceId], (err) => {
                 if (err) {
                     db.run("ROLLBACK");
