@@ -8,3 +8,4 @@ while num_var > 0:
     var_eq.append
     num_var
 print("Enter equation")
+
