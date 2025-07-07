@@ -152,7 +152,7 @@ export default function App() {
                     <h2 className="dashboard-title">Inventory Dashboard</h2>
                     <input
                         type="text"
-                        placeholder="Search by Serial, Model, or User..."
+                        placeholder="Search by DOE, Model, or User..."
                         className="search-input"
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
@@ -192,7 +192,7 @@ const Header = ({ onAddDevice }) => (
     <header className="header">
         <div>
             <h1 className="header-title">Loaner Fleet Manager</h1>
-            <p className="header-subtitle">Efficiently manage your company's valuable assets.</p>
+            <p className="header-subtitle">Manage all of the loaner laptops</p>
         </div>
         <button
             onClick={onAddDevice}
@@ -214,12 +214,12 @@ const DeviceTable = ({ devices, isLoading, onCheckIn, onCheckOut, onShowHistory 
     }
 
     return (
-        <div className="table-container">
+        <div className="table-container">   
             <table className="device-table">
                 <thead className="table-header">
                     <tr>
-                        <th scope="col">Serial Number</th>
-                        <th scope="col">Model</th>
+                        <th scope="col">DOE Number</th>
+                        <th scope="col">MAC/PC</th>
                         <th scope="col">Status</th>
                         <th scope="col">Current User</th>
                         <th scope="col">Actions</th>
@@ -303,7 +303,7 @@ const AddDeviceModal = ({ isOpen, onClose, onAdd }) => {
         <Modal isOpen={isOpen} onClose={onClose} title="Add New Device">
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
-                    <label htmlFor="serialNumber" className="form-label">Serial Number</label>
+                    <label htmlFor="serialNumber" className="form-label">DOE Number</label>
                     <input type="text" id="serialNumber" value={serialNumber} onChange={(e) => setSerialNumber(e.target.value)} className="form-input" required />
                 </div>
                 <div className="form-group">

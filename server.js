@@ -27,9 +27,8 @@ const db = new sqlite3.Database('./inventory.db', sqlite3.OPEN_READWRITE | sqlit
         // Create tables if they don't exist
         db.serialize(() => {
             db.run(`CREATE TABLE IF NOT EXISTS devices (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                serialNumber TEXT NOT NULL UNIQUE,
-                model TEXT NOT NULL,
+                DOE TEXT NOT NULL UNIQUE PRIMARY KEY,
+                PC/MAC TEXT NOT NULL,
                 notes TEXT,
                 status TEXT NOT NULL DEFAULT 'Available',
                 currentUser TEXT,
